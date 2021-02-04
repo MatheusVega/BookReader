@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+}
+
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <h3>Livros Cadastrados</h3>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Total de Livros: @ViewBag.ContBook</p>
+                <a href="@Url.Action("Index","Book")" class="btn btn-primary">Veja os Livros Cadastrados</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <h3>Autores cadastrados</h3>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Total de Autores: @ViewBag.ContAuthor</p>
+                <a href="@Url.Action("Index","Author")" class="btn btn-primary">Veja os Autores Cadastrados</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <h3>Gêneros Cadastrados</h3>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Total de Gêneros: @ViewBag.ContGenre</p>
+                <a href="@Url.Action("Index","Genre")" class="btn btn-primary">Veja os Gêneros Cadastrados</a>
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Register Genre";
+}
+
+@model BookReader.Models.Genre
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+            @using (Html.BeginForm("AddGenre", "Genre", FormMethod.Post))
+            {
+                <form asp-action="Add" method="post" class="">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.Name, "Nome", htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @placeholder = "Nome", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(u => u.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.Description, "Descrição", htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(x => x.Description, new { htmlAttributes = new { @placeholder = "Indicação", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(u => u.Description, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.DateCreate, "Data da criação", htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(x => x.DateCreate, new { htmlAttributes = new { @class = "form-control", placeholder = "00/00/0000", data_tipo = "data" } })
+                                    @Html.ValidationMessageFor(u => u.DateCreate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <input type="submit" value="AddGenre" class="btn btn-primary" />
+                        </div>
+                    </div>
+
+                </form>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section scripts{
+    <script>
+        $(function () {
+            $("input[data-tipo=''cpf'']").mask("000.000.000-00");
+            $("input[data-tipo=''data'']").mask("00/00/0000");
+            $("input[data-tipo=''moeda'']").mask("000.000.000,00", { reverse: true });
+        });
+    </script>
+}

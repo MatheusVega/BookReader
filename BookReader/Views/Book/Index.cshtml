@@ -1,0 +1,134 @@
+﻿@{ 
+    ViewBag.Title = "Index livro";
+}
+
+@model IList<BookReader.Models.Book>
+
+<div class="container">
+    <header class="text-center text-white">
+        <h1 class="display-4">Livros Cadastrados</h1>
+    </header>
+
+    <div class="row " id="GridTable">
+        <div class="card rounded shadow border-0">
+            <div class="card-body p-5 bg-white rounded">
+                <div class="table-responsive">
+                    <table style="width:100%; height:100%" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Codigo</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Author</th>
+                                <th scope="col">Genero</th>
+                                <th scope="col">indicação</th>
+                                <th scope="col">Saga</th>
+                                <th scope="col">Data da Criação</th>
+                                <th scope="col">Livro Lido</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var u in Model)
+                            {
+                                <tr>
+
+                                    <td>@u.Id</td>
+                                    <td>@u.Name</td>
+                                    <td>@u.Author.Name</td>
+                                    <td>@u.Genre.Name</td>
+                                    <td>@u.Indication</td>
+                                    <td>@u.Saga</td>
+                                    <td>@u.DateCreate.ToShortDateString()</td>
+                                    @if (@u.Flag == 1)
+                                    {
+                                        <td><input type='checkbox' checked /></td>
+                                    }
+                                    else
+                                    {
+                                        <td><input type='checkbox' onchange="OpenModal()" /></td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("Register","Book")'" type="button">Cadastrar Novo Livros</button>
+
+
+
+
+    <div id="modal" class=" modal fade modal-scroll ">
+        <div class="modal-dialog  modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title text-center">Dados Pré NFTS</h4>
+                </div>
+                <div class="  modal-over">
+                    <form class="form-horizontal" name="form0" id="form0 " method="POST" enctype="multipart/form-data">
+                        <div class="container-fluid panel no-margin-bottom">
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h1 class="page-header" style="color: #0A5E8A;">Pré NFTS</h1>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="Protocolo">Protocolo</label>
+                                <div class="col-sm-6">
+                                    <input value="" autofocus="false" class="form-control" id="txtProtocolo" name="Protocolo" type="text" readonly="true">
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                    
+            </div>
+                <div class="modal-footer">
+
+
+                    <a class="btn btn-default" data-dismiss="modal">Fechar</a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+<script>
+    function Abrir() {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("ObterDetalhesNfts", "SEI")',
+            dataType: 'json',
+            data: {
+                protocolo: Protocolo.textContent
+            },
+            success: function (dados) {
+
+                $.each(dados, function (i, item) {
+
+                    $('#txtProtocolo').val(item.Protocolo);
+                    $('#txtNumNota').val(item.NumNota);
+                    $('#txtDataEmi').val(item.DataEmi); 
+
+                    $("#modalNFTS").modal({
+                        backdrop: 'static'
+                    }, 'show');
+
+                });
+            }
+        });
+    };
+
+
+</script>

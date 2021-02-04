@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Index Genero";
+}
+
+@model IList<BookReader.Models.Genre>
+<style>
+    body {
+        background-color: #EEEC7B7;
+    }
+</style>
+
+
+<div class="container">
+    <header class="text-center text-white">
+        <h1 class="display-4">Generos Cadastrados</h1>
+    </header>
+
+    <div class="row " id="GridTable">
+        <div class="card rounded shadow border-0">
+            <div class="card-body p-5 bg-white rounded">
+                <div class="table-responsive">
+                    <table style="width:100%; height:100%" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Código</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Descricao</th>
+                                <th scope="col">Data Criação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var u in Model)
+                            {
+                                <tr>
+                                    <td>@u.Id</td>
+                                    <td>@u.Name</td>
+                                    <td>@u.Description</td>
+                                    <td>@u.DateCreate.ToShortDateString()</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <button class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("Register","Genre")'" type="button">Cadastrar Novo Genero</button>
+
+
+</div>
+
+

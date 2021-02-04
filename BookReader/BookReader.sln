@@ -1,0 +1,8 @@
+{
+  "solution": {
+    "path": "..\\..\\BookReader2.sln",
+    "projects": [
+      "BookReader\\BookReader\\BookReader.csproj"
+    ]
+  }
+}

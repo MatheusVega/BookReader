@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Register Author";
+}
+
+@model BookReader.Models.Author
+
+
+@using (Html.BeginForm("AddAuthor", "Author", FormMethod.Post))
+{
+    <form asp-action="Add" method="post" class="form-horizontal">
+        <div class="container-fluid panel no-margin-bottom">
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Name, "Nome do Autor", htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @placeholder = "Nome", @class = "form-control" } })
+                        @Html.ValidationMessageFor(u => u.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Genero</label>
+                    <div class="col-sm-6">
+                        @Html.DropDownList("IdGenre", new SelectList(ViewBag.Genre, "Id", "Name"), "Selecionar Genero", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Name, null, new { @class = "help-block position-absolute" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(x => x.MainSaga, "Saga Principal", htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(x => x.MainSaga, new { htmlAttributes = new { @placeholder = "Indicação", @class = "form-control" } })
+                        @Html.ValidationMessageFor(u => u.MainSaga, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(x => x.FavoriteBook, "Livro favorito", htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(x => x.FavoriteBook, new { htmlAttributes = new { @placeholder = "Saga", @class = "form-control" } })
+                        @Html.ValidationMessageFor(u => u.FavoriteBook, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(x => x.DateCreate, "Data da Criação", htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(x => x.DateCreate, new { htmlAttributes = new { @placeholder = "Tipo de Livro", @class = "form-control" } })
+                        @Html.ValidationMessageFor(u => u.DateCreate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <input type="submit" value="AddAuthor" class="btn btn-primary btn-lg btn-block" />
+            </div>
+        </div>
+
+    </form>
+}
