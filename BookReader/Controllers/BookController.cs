@@ -1,6 +1,7 @@
 ﻿using BookReader.BLL;
 using BookReader.DAL;
 using BookReader.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -31,11 +32,13 @@ namespace BookReader.Controllers
 
         public ActionResult Index(Book book)
         {
-            return View(bookBLL.List());
+            return View();
         }
 
         public ActionResult AddBook(FormCollection form)
         {
+            BookBLL bookBLL = new BookBLL();
+
             Book book = new Book
             {
                 Name = Request.Form["Name"],
@@ -46,29 +49,24 @@ namespace BookReader.Controllers
                 DateCreate = DateTime.Today
 
             };
-            Conexao conexao = new Conexao();
-            conexao.Conectar();
 
-            ExecutaSP executa = new ExecutaSP("BOOK_SP_INS_BOOK",conexao.VoltaConexaoAberta());
-            try {
-                executa.addParam("@NAME", book.Name);
-                executa.addParam("@IDAUT", book.IdAuthor);
-                executa.addParam("@IDGEN", book.IdGenre);
-                executa.addParam("@INDICATION", book.Indication);
-                executa.addParam("@SAGA", book.Saga.ToString());
-                executa.addParam("@DATE", book.DateCreate);
-
-                executa.Executa();
-                executa.Confirma();
-            }
-            catch (Exception ex)
-            {
-
-            }
-            
+            bookBLL.AddBook(book);
 
             return View();
 
+        }
+
+        public JArray GetBook()
+        {
+            BookBLL bookBLL = new BookBLL();
+
+            return bookBLL.GetBook();
+        }
+        public string AddBookRead(int id,string resume,DateTime start,DateTime end)
+        {
+            BookBLL bookBLL = new BookBLL();
+
+            return bookBLL.AddBookRead(id, resume, start, end);
         }
     }
 }

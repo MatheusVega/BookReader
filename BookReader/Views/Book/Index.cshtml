@@ -1,8 +1,87 @@
-﻿@{ 
+﻿@{
     ViewBag.Title = "Index livro";
 }
 
 @model IList<BookReader.Models.Book>
+
+<style>
+    .modal-over {
+        overflow-y: auto;
+    }
+
+    .pdfobject-container {
+        height: 500px;
+    }
+
+    .form-horizontal .control-label {
+        text-align: unset;
+    }
+
+
+    .btn-group btn-group-toggle {
+        color: darkred;
+    }
+
+    .btn btn-secondary active {
+        color: darkred;
+    }
+
+    .inputDnD .form-control-file {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: 7em;
+        outline: none;
+        visibility: hidden;
+        cursor: pointer;
+        background-color: #c61c23;
+        box-shadow: 0 0 5px solid currentColor;
+    }
+
+        .inputDnD .form-control-file:before {
+            content: attr(data-title);
+            position: absolute;
+            top: 0.5em;
+            left: 0;
+            width: 100%;
+            min-height: 6em;
+            line-height: 2em;
+            padding-top: 1.5em;
+            opacity: 1;
+            visibility: visible;
+            text-align: center;
+            border: 0.25em dashed currentColor;
+            -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .inputDnD .form-control-file:hover:before {
+            border-style: solid;
+            box-shadow: inset 0px 0px 0px 0.25em currentColor;
+        }
+
+    body {
+        background-color: #f7f7f9;
+    }
+
+    ul.list-group:after {
+        clear: both;
+        display: block;
+        content: "";
+        display: flex;
+    }
+
+    li i {
+        float: right;
+    }
+
+    .modal-scroll {
+        overflow-y: auto;
+    }
+</style>
 
 <div class="container">
     <header class="text-center text-white">
@@ -13,7 +92,7 @@
         <div class="card rounded shadow border-0">
             <div class="card-body p-5 bg-white rounded">
                 <div class="table-responsive">
-                    <table style="width:100%; height:100%" class="table table-striped table-bordered">
+                    <table style="width:100%; height:100%" class="table table-striped table-bordered" id="gridBook">
                         <thead>
                             <tr>
                                 <th scope="col">Codigo</th>
@@ -27,27 +106,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var u in Model)
-                            {
-                                <tr>
-
-                                    <td>@u.Id</td>
-                                    <td>@u.Name</td>
-                                    <td>@u.Author.Name</td>
-                                    <td>@u.Genre.Name</td>
-                                    <td>@u.Indication</td>
-                                    <td>@u.Saga</td>
-                                    <td>@u.DateCreate.ToShortDateString()</td>
-                                    @if (@u.Flag == 1)
-                                    {
-                                        <td><input type='checkbox' checked /></td>
-                                    }
-                                    else
-                                    {
-                                        <td><input type='checkbox' onchange="OpenModal()" /></td>
-                                    }
-                                </tr>
-                            }
                         </tbody>
                     </table>
                 </div>
@@ -65,7 +123,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title text-center">Dados Pré NFTS</h4>
+                    <h4 class="modal-title text-center">Parabéns por Ler mais um Livros</h4>
                 </div>
                 <div class="  modal-over">
                     <form class="form-horizontal" name="form0" id="form0 " method="POST" enctype="multipart/form-data">
@@ -73,62 +131,186 @@
 
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <h1 class="page-header" style="color: #0A5E8A;">Pré NFTS</h1>
+                                    <h1 class="page-header" style="color: #0A5E8A;">Dados do Livro</h1>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" for="Protocolo">Protocolo</label>
+                                <label class="col-sm-2 control-label" for="IdBook">Código do Livro</label>
                                 <div class="col-sm-6">
-                                    <input value="" autofocus="false" class="form-control" id="txtProtocolo" name="Protocolo" type="text" readonly="true">
+                                    <input value="" autofocus="false" class="form-control" id="txtIdBook" name="IdBook" type="text" readonly>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="Name">Nome do Livro</label>
+                                <div class="col-sm-6">
+                                    <input value="" autofocus="false" class="form-control" id="txtName" name="Name" type="text" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="Name">Resumo do Livro</label>
+                                <div class="col-sm-6">
+                                    <textarea class="form-control" id="txtResume" rows="3"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="Name">Começo da Leitura</label>
+                                <div class="col-sm-6">
+                                    <input value="" autofocus="false" class="form-control" id="txtDateStart" name="Name" type="text">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="Name">Fim da Leitura</label>
+                                <div class="col-sm-6">
+                                    <input value="" autofocus="false" class="form-control" id="txtDateEnd" name="Name" type="text">
+                                </div>
+                            </div>
+
 
                         </div>
                     </form>
                 </div>
-                    
+
             </div>
-                <div class="modal-footer">
+            <div class="modal-footer">
 
 
-                    <a class="btn btn-default" data-dismiss="modal">Fechar</a>
-                </div>
+                <a class="btn btn-primary" data-dismiss="modal">Fechar</a>
+                <input type="submit" onclick="AddBookRead()" class="btn btn-primary" />
             </div>
         </div>
+    </div>
+</div>
 
 
 
+<link rel="stylesheet" type="text/css" href="~/Content/css/jquery.dataTables.css">
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" language="javascript" src="~/Content/js/jquery.dataTables.js"></script>
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
 
 
 
-
-<script>
-    function Abrir() {
+    var Book = {
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ registros por página",
+            "zeroRecords": "Nenhum registro econtrando",
+            "info": "Monstrando página _PAGE_ de _PAGES_ </br> Total: _MAX_",
+            "infoEmpty": "Não foram encontrados registros",
+            "infoFiltered": "(Filtro realizado em _MAX_ total usuários)",
+            "search": "Pesquisar",
+            "paging": "false",
+            "order": [[1, "asc"]],
+            "searching": "false",
+            "bDestroy": "true",
+            "oPaginate": {
+                "sFirst": "Primeira página",
+                "sPrevious": "<<",
+                "sNext": ">>",
+                "sLast": "Última página"
+            }
+        }
+    };
 
         $.ajax({
             type: "POST",
-            url: '@Url.Action("ObterDetalhesNfts", "SEI")',
-            dataType: 'json',
-            data: {
-                protocolo: Protocolo.textContent
-            },
+            url: '@Url.Action("GetBook", "Book")',
+            //data: { dataIni: drp.startDate.format('DD/MM/YYYY'), dataFim: drp.endDate.format('DD/MM/YYYY') },
+            dataType: "json",
             success: function (dados) {
+
+                var cont = 0;
+
+                $("#gridBook").DataTable();
+
+                var dtable = $("#gridBook");
+
+                dtable.dataTable().fnClearTable();
+                dtable.dataTable().fnDestroy();
+
 
                 $.each(dados, function (i, item) {
 
-                    $('#txtProtocolo').val(item.Protocolo);
-                    $('#txtNumNota').val(item.NumNota);
-                    $('#txtDataEmi').val(item.DataEmi); 
+                    var cols = "";
+                    cols += "<td id='IdBook" + cont + "'>" + item.Id + "</td>";
+                    cols += "<td id='Name" + cont + "'>" + item.BkName + "</td>";
+                    cols += "<td id='AutName" + cont + "'>" + item.AutName + "</td>";
+                    cols += "<td id='GenName" + cont + "'>" + item.GenName + "</td>";
+                    cols += "<td id='BkIndication" + cont + "'>" + item.BkIndication + "</td>";
+                    cols += "<td id='BkSaga" + cont + "'>" + item.BkSaga + "</td>";
+                    cols += "<td id='BkDate" + cont + "'>" + item.BkDate + "</td>";
 
-                    $("#modalNFTS").modal({
-                        backdrop: 'static'
-                    }, 'show');
+                    if (item.BkFlag == 1) {
+                        cols +=  '<td><input type="checkbox" checked /></td>'
+                    } else {
+                        cols += '<td><input type="checkbox" onchange="Abrir(IdBook' + cont + ',Name' + cont + ')" /></td>'
+                    }
 
+
+                    dtable.find('tbody')
+                        .append($('<tr>')
+                            .append($(cols)));
+
+
+                    cont++;
+
+                    dtable.dataTable(Book);
                 });
+
             }
         });
+
+    });
+
+
+
+    function Abrir(idBook,name) {
+
+        $('#txtIdBook').val(idBook.textContent);
+        $('#txtName').val(name.textContent);
+
+        $("#modal").modal({
+            backdrop: 'static'
+        }, 'show');
+
+
     };
+
+    function AddBookRead() {
+        var id = $('#txtIdBook').val();
+        var resume = $('#txtResume').val();
+        var dateStart = $('#txtDateStart').val();
+        var dateEnd = $('#txtDateEnd').val();
+
+         $.ajax({
+            type: "POST",
+            url: '@Url.Action("AddBookRead", "Book")',
+             data: {
+                 id: id,
+                 resume: resume,
+                 start: dateStart,
+                 end: dateEnd
+             },
+            dataType: "json",
+            success: function (dados) {
+
+                if (dados == "Ok") {
+                    alert("Leitura registrada com sucesso");
+                } else {
+                    alert("Falha no registro da Leitura");
+                }
+
+            }
+        });
+    }
 
 
 </script>

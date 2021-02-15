@@ -6,29 +6,23 @@ using System.Web;
 
 namespace BookReader.BLL
 {
-    public class ReadBLL
+    public class BookReadBLL
     {
         private BookContext context;
 
-        public ReadBLL(BookContext context)
+        public BookReadBLL()
         {
-            this.context = context;
+            context = new BookContext();
         }
 
-        public void Add(Read read)
+        public IList<BookRead> List()
         {
-            context.TB_READ.Add(read);
-            context.SaveChanges();
-        }
-        public IList<Read> List()
-        {
-            return context.TB_READ.ToList();
+            return context.TB_BOOK_READ.ToList();
         }
 
         public void Dispose()
         {
             throw new NotImplementedException();
         }
-
     }
 }

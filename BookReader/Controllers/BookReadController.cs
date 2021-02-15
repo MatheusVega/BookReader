@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace BookReader.Controllers
 {
-    public class ReadController : Controller
+    public class BookReadController : Controller
     {
-        // GET: Read
+        // GET: BookRead
         public ActionResult Index()
         {
             return View();

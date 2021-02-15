@@ -146,13 +146,13 @@
     <Compile Include="BLL\AuthorBLL.cs" />
     <Compile Include="BLL\BookBLL.cs" />
     <Compile Include="BLL\BookContext.cs" />
+    <Compile Include="BLL\BookReadBLL.cs" />
     <Compile Include="BLL\GenreBLL.cs" />
-    <Compile Include="BLL\ReadBLL.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="Controllers\BookReadController.cs" />
     <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ReadController.cs" />
     <Compile Include="DAL\Conexao.cs" />
     <Compile Include="DAL\ExecutaSP.cs" />
     <Compile Include="DAL\SelectSP.cs" />
@@ -163,12 +163,10 @@
     <Compile Include="Mapping\BookMAP.cs" />
     <Compile Include="Mapping\BookReadMAP.cs" />
     <Compile Include="Mapping\GenreMAP.cs" />
-    <Compile Include="Mapping\ReadMAP.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\BookRead.cs" />
     <Compile Include="Models\Genre.cs" />
-    <Compile Include="Models\Read.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -176,17 +174,62 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\dataTables.bootstrap.css" />
+    <Content Include="Content\css\dataTables.bootstrap.min.css" />
+    <Content Include="Content\css\dataTables.bootstrap4.css" />
+    <Content Include="Content\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\css\dataTables.foundation.css" />
+    <Content Include="Content\css\dataTables.foundation.min.css" />
+    <Content Include="Content\css\dataTables.jqueryui.css" />
+    <Content Include="Content\css\dataTables.jqueryui.min.css" />
+    <Content Include="Content\css\dataTables.material.css" />
+    <Content Include="Content\css\dataTables.material.min.css" />
+    <Content Include="Content\css\dataTables.semanticui.css" />
+    <Content Include="Content\css\dataTables.semanticui.min.css" />
+    <Content Include="Content\css\dataTables.uikit.css" />
+    <Content Include="Content\css\dataTables.uikit.min.css" />
+    <Content Include="Content\css\jquery.dataTables.css" />
+    <Content Include="Content\css\jquery.dataTables.min.css" />
+    <Content Include="Content\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Content\images\favicon.ico" />
+    <Content Include="Content\images\sort_asc.png" />
+    <Content Include="Content\images\sort_asc_disabled.png" />
+    <Content Include="Content\images\sort_both.png" />
+    <Content Include="Content\images\sort_desc.png" />
+    <Content Include="Content\images\sort_desc_disabled.png" />
+    <Content Include="Content\js\dataTables.bootstrap.js" />
+    <Content Include="Content\js\dataTables.bootstrap.min.js" />
+    <Content Include="Content\js\dataTables.bootstrap4.js" />
+    <Content Include="Content\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Content\js\dataTables.dataTables.js" />
+    <Content Include="Content\js\dataTables.dataTables.min.js" />
+    <Content Include="Content\js\dataTables.foundation.js" />
+    <Content Include="Content\js\dataTables.foundation.min.js" />
+    <Content Include="Content\js\dataTables.jqueryui.js" />
+    <Content Include="Content\js\dataTables.jqueryui.min.js" />
+    <Content Include="Content\js\dataTables.material.js" />
+    <Content Include="Content\js\dataTables.material.min.js" />
+    <Content Include="Content\js\dataTables.semanticui.js" />
+    <Content Include="Content\js\dataTables.semanticui.min.js" />
+    <Content Include="Content\js\dataTables.uikit.js" />
+    <Content Include="Content\js\dataTables.uikit.min.js" />
+    <Content Include="Content\js\jquery.dataTables.js" />
+    <Content Include="Content\js\jquery.dataTables.min.js" />
+    <Content Include="Content\js\jquery.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.4.1.js" />
-    <Content Include="Scripts\jquery-3.4.1.min.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Content\images\Sorting icons.psd" />
+    <None Include="Scripts\jquery-3.5.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.5.1.js" />
+    <Content Include="Scripts\jquery-3.5.1.min.js" />
+    <Content Include="Scripts\jquery-3.5.1.slim.js" />
+    <Content Include="Scripts\jquery-3.5.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.5.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.5.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -214,6 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\BookRead\" />
     <Folder Include="Views\Read\" />
   </ItemGroup>
   <ItemGroup>
@@ -226,8 +270,6 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

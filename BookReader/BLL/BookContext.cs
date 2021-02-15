@@ -18,14 +18,14 @@ namespace BookReader.BLL
         public DbSet<Book> TB_BOOK { get; set; }
         public DbSet<Author> TB_AUTHOR { get; set; }
         public DbSet<Genre> TB_GENRE { get; set; }
-        public DbSet<Read> TB_READ { get; set; }
+        public DbSet<BookRead> TB_BOOK_READ { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new BookMAP());
             modelBuilder.Configurations.Add(new AuthorMAP());
             modelBuilder.Configurations.Add(new GenreMAP());
-            modelBuilder.Configurations.Add(new ReadMAP());
+            modelBuilder.Configurations.Add(new BookReadMAP());
 
             modelBuilder.Entity<Genre>()
               .HasMany(x => x.Authors)
@@ -33,6 +33,11 @@ namespace BookReader.BLL
               .HasForeignKey(y => y.IdGenre)
               .WillCascadeOnDelete();
 
+            modelBuilder.Entity<Book>()
+              .HasMany(x => x.BookReads)
+              .WithRequired(y => y.Book)
+              .HasForeignKey(y => y.IdBK)
+              .WillCascadeOnDelete();
         }
 
 
