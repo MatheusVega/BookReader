@@ -40,7 +40,7 @@ namespace BookReader.Controllers
             if (ModelState.IsValid)
             {
                 authorBLL.Add(author);
-                return RedirectToAction("Register");
+                return RedirectToAction("Index");
 
             }
             else

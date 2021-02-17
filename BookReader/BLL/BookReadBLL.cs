@@ -17,7 +17,9 @@ namespace BookReader.BLL
 
         public IList<BookRead> List()
         {
-            return context.TB_BOOK_READ.ToList();
+            List<BookRead> LisstBookRead = context.TB_BOOK_READ.ToList();
+
+            return LisstBookRead;
         }
 
         public void Dispose()

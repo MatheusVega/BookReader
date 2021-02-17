@@ -103,6 +103,7 @@
                                 <th scope="col">Saga</th>
                                 <th scope="col">Data da Criação</th>
                                 <th scope="col">Livro Lido</th>
+                                <th scope="col">Ler Livro</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -197,6 +198,46 @@
     $(document).ready(function () {
 
 
+        $("#txtDateStart").datepicker({
+
+            yearRange: "-80:+0",
+            changeYear: true,
+            changeMonth: true,
+            dateFormat: 'dd/mm/yy',
+            dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+            dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+            dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+            monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            nextText: 'Próximo',
+            prevText: 'Anterior'
+        }).on('focus', $(this), function () {
+
+            $(this).mask('99/99/9999');
+        });
+
+        $('#txtDateStart').datepicker('setDate', -15);
+
+        $("#txtDateEnd").datepicker({
+
+            yearRange: "-80:+0",
+            changeYear: true,
+            changeMonth: true,
+            dateFormat: 'dd/mm/yy',
+            dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+            dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+            dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+            monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            nextText: 'Próximo',
+            prevText: 'Anterior'
+        }).on('focus', $(this), function () {
+
+            $(this).mask('99/99/9999');
+        });
+
+        $('#txtDateEnd').datepicker('setDate', new Date());
+
 
     var Book = {
         "language": {
@@ -228,8 +269,6 @@
 
                 var cont = 0;
 
-                $("#gridBook").DataTable();
-
                 var dtable = $("#gridBook");
 
                 dtable.dataTable().fnClearTable();
@@ -250,9 +289,10 @@
                     if (item.BkFlag == 1) {
                         cols +=  '<td><input type="checkbox" checked /></td>'
                     } else {
-                        cols += '<td><input type="checkbox" onchange="Abrir(IdBook' + cont + ',Name' + cont + ')" /></td>'
+                        cols += '<td><input type="checkbox"/></td>'
                     }
 
+                    cols += '<td id="Modelo' + cont + '">' + '<a href="#" onclick="Abrir(IdBook' + cont + ',Name' + cont + ')"  style="color:black;"><i class="glyphicon glyphicon-ok"></i></a></td>';
 
                     dtable.find('tbody')
                         .append($('<tr>')
@@ -261,9 +301,10 @@
 
                     cont++;
 
-                    dtable.dataTable(Book);
+                    
                 });
 
+                dtable.dataTable(Book);
             }
         });
 
@@ -301,12 +342,7 @@
             dataType: "json",
             success: function (dados) {
 
-                if (dados == "Ok") {
-                    alert("Leitura registrada com sucesso");
-                } else {
-                    alert("Falha no registro da Leitura");
-                }
-
+                
             }
         });
     }

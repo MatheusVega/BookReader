@@ -52,7 +52,7 @@ namespace BookReader.Controllers
 
             bookBLL.AddBook(book);
 
-            return View();
+            return RedirectToAction("Index");
 
         }
 
@@ -62,11 +62,13 @@ namespace BookReader.Controllers
 
             return bookBLL.GetBook();
         }
-        public string AddBookRead(int id,string resume,DateTime start,DateTime end)
+        public ActionResult AddBookRead(int id,string resume,DateTime start,DateTime end)
         {
             BookBLL bookBLL = new BookBLL();
 
-            return bookBLL.AddBookRead(id, resume, start, end);
+            bookBLL.AddBookRead(id, resume, start, end);
+
+            return RedirectToAction("Index");
         }
     }
 }

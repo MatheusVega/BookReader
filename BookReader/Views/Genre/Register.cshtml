@@ -33,7 +33,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(x => x.DateCreate, "Data da criação", htmlAttributes: new { @class = "col-sm-4 col-form-label" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(x => x.DateCreate, new { htmlAttributes = new { @class = "form-control", placeholder = "00/00/0000", data_tipo = "data" } })
+                                    @Html.EditorFor(x => x.DateCreate, new { htmlAttributes = new { @class = "form-control", placeholder = "00/00/0000", type = "text"} })
                                     @Html.ValidationMessageFor(u => u.DateCreate, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -53,12 +53,28 @@
 
 
 
-@section scripts{
-    <script>
-        $(function () {
-            $("input[data-tipo=''cpf'']").mask("000.000.000-00");
-            $("input[data-tipo=''data'']").mask("00/00/0000");
-            $("input[data-tipo=''moeda'']").mask("000.000.000,00", { reverse: true });
-        });
-    </script>
-}
+<script>
+    
+
+    $("#DateCreate").datepicker({
+
+        yearRange: "-80:+0",
+        changeYear: true,
+        changeMonth: true,
+        dateFormat: 'dd/mm/yy',
+        dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+        dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+        dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+        monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+        nextText: 'Próximo',
+        prevText: 'Anterior'
+    }).on('focus', $(this), function () {
+
+        $(this).mask('99/99/9999');
+    });
+
+    $('#DateCreate').datepicker('setDate', new Date());
+
+
+</script>
