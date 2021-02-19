@@ -27,7 +27,7 @@ namespace BookReader.DAL
 
         public void Conectar()
         {
-            sqlConn = new SqlConnection(@"Data Source=DESKTOP-UNPN1DK;Initial Catalog=BookReader;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            sqlConn = new SqlConnection("Server = tcp:book.database.windows.net, 1433; Initial Catalog = BookReader; Persist Security Info = False; User ID = matheusveiga; Password = m68695412@; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;");
             sqlConn.Open();
             string teste;
             teste = sqlConn.State.ToString();
