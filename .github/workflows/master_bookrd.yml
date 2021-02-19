@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -16,21 +17,21 @@ jobs:
     - uses: actions/checkout@master
 
     - name: Setup MSBuild path
-      uses: microsoft/setup-msbuild@v1.0.0
+      uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.0.2
+      uses: NuGet/setup-nuget@v1.0.5
 
     - name: Restore NuGet packages
       run: nuget restore
 
     - name: Publish to folder
-      run: msbuild /p:Configuration=Release /p:DeployOnBuild=true /t:WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=./published/ /p:PackageAsSingleFile=false
+      run: msbuild /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\"
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'bookrd'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_82a548f004b24c3d9ee6f29814d194fc }}
-        package: ./published/
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_7b946fc316bf441796042e812292a8d2 }}
+        package: \published\
