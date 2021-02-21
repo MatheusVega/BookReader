@@ -95,14 +95,15 @@
                     <table style="width:100%; height:100%" class="table table-striped table-bordered" id="gridBook">
                         <thead>
                             <tr>
-                                <th scope="col">Codigo</th>
                                 <th scope="col">Nome</th>
-                                <th scope="col">Author</th>
-                                <th scope="col">Genero</th>
-                                <th scope="col">indicação</th>
+                                <th scope="col">Autor</th>
+                                <th scope="col">Gênero</th>
+                                <th scope="col">Indicação</th>
                                 <th scope="col">Saga</th>
                                 <th scope="col">Data da Criação</th>
                                 <th scope="col">Livro Lido</th>
+                                <th scope="col">Editar</th>
+                                <th scope="col">Excluir</th>
                                 <th scope="col">Ler Livro</th>
                             </tr>
                         </thead>
@@ -278,7 +279,6 @@
                 $.each(dados, function (i, item) {
 
                     var cols = "";
-                    cols += "<td id='IdBook" + cont + "'>" + item.Id + "</td>";
                     cols += "<td id='Name" + cont + "'>" + item.BkName + "</td>";
                     cols += "<td id='AutName" + cont + "'>" + item.AutName + "</td>";
                     cols += "<td id='GenName" + cont + "'>" + item.GenName + "</td>";
@@ -291,7 +291,8 @@
                     } else {
                         cols += '<td><input type="checkbox"/></td>'
                     }
-
+                    cols += '<td id="Modelo' + cont + '">' + '<a href="#" onclick="Abrir(IdBook' + cont + ',Name' + cont + ')"  style="color:black;"><i class="glyphicon glyphicon-pencil"></i></a></td>';
+                    cols += '<td id="Modelo' + cont + '">' + '<a href="#" onclick="Abrir(IdBook' + cont + ',Name' + cont + ')"  style="color:black;"><i class="glyphicon glyphicon-remove"></i></a></td>';
                     cols += '<td id="Modelo' + cont + '">' + '<a href="#" onclick="Abrir(IdBook' + cont + ',Name' + cont + ')"  style="color:black;"><i class="glyphicon glyphicon-ok"></i></a></td>';
 
                     dtable.find('tbody')

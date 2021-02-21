@@ -47,11 +47,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Azure.Core, Version=1.0.2.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
+      <HintPath>..\packages\Azure.Core.1.0.2\lib\netstandard2.0\Azure.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Azure.Identity, Version=1.1.1.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
+      <HintPath>..\packages\Azure.Identity.1.1.1\lib\netstandard2.0\Azure.Identity.dll</HintPath>
+    </Reference>
+    <Reference Include="Azure.Security.KeyVault.Keys, Version=4.0.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
+      <HintPath>..\packages\Azure.Security.KeyVault.Keys.4.0.0\lib\netstandard2.0\Azure.Security.KeyVault.Keys.dll</HintPath>
+    </Reference>
+    <Reference Include="Azure.Security.KeyVault.Secrets, Version=4.0.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
+      <HintPath>..\packages\Azure.Security.KeyVault.Secrets.4.0.0\lib\netstandard2.0\Azure.Security.KeyVault.Secrets.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Configuration.ConfigurationBuilders.Azure, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Configuration.ConfigurationBuilders.Azure.2.0.0\lib\Net471\Microsoft.Configuration.ConfigurationBuilders.Azure.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Configuration.ConfigurationBuilders.Base, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Configuration.ConfigurationBuilders.Base.2.0.0\lib\Net471\Microsoft.Configuration.ConfigurationBuilders.Base.dll</HintPath>
@@ -60,6 +78,9 @@
       <HintPath>..\packages\Microsoft.Configuration.ConfigurationBuilders.UserSecrets.2.0.0\lib\Net471\Microsoft.Configuration.ConfigurationBuilders.UserSecrets.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Identity.Client, Version=4.1.0.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Identity.Client.4.1.0\lib\net45\Microsoft.Identity.Client.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
     </Reference>
@@ -73,9 +94,42 @@
       <HintPath>..\packages\Ninject.MVC5.3.3.0\lib\net45\Ninject.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.6.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.ProtectedData, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.ProtectedData.4.5.0\lib\net461\System.Security.Cryptography.ProtectedData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.4.6.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.4.6.0\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -84,6 +138,7 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -176,59 +231,60 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\css\dataTables.bootstrap.css" />
-    <Content Include="Content\css\dataTables.bootstrap.min.css" />
-    <Content Include="Content\css\dataTables.bootstrap4.css" />
-    <Content Include="Content\css\dataTables.bootstrap4.min.css" />
-    <Content Include="Content\css\dataTables.foundation.css" />
-    <Content Include="Content\css\dataTables.foundation.min.css" />
-    <Content Include="Content\css\dataTables.jqueryui.css" />
-    <Content Include="Content\css\dataTables.jqueryui.min.css" />
-    <Content Include="Content\css\dataTables.material.css" />
-    <Content Include="Content\css\dataTables.material.min.css" />
-    <Content Include="Content\css\dataTables.semanticui.css" />
-    <Content Include="Content\css\dataTables.semanticui.min.css" />
-    <Content Include="Content\css\dataTables.uikit.css" />
-    <Content Include="Content\css\dataTables.uikit.min.css" />
-    <Content Include="Content\css\jquery.dataTables.css" />
-    <Content Include="Content\css\jquery.dataTables.min.css" />
-    <Content Include="Content\css\jquery.dataTables_themeroller.css" />
-    <Content Include="Content\images\favicon.ico" />
-    <Content Include="Content\images\sort_asc.png" />
-    <Content Include="Content\images\sort_asc_disabled.png" />
-    <Content Include="Content\images\sort_both.png" />
-    <Content Include="Content\images\sort_desc.png" />
-    <Content Include="Content\images\sort_desc_disabled.png" />
-    <Content Include="Content\js\dataTables.bootstrap.js" />
-    <Content Include="Content\js\dataTables.bootstrap.min.js" />
-    <Content Include="Content\js\dataTables.bootstrap4.js" />
-    <Content Include="Content\js\dataTables.bootstrap4.min.js" />
-    <Content Include="Content\js\dataTables.dataTables.js" />
-    <Content Include="Content\js\dataTables.dataTables.min.js" />
-    <Content Include="Content\js\dataTables.foundation.js" />
-    <Content Include="Content\js\dataTables.foundation.min.js" />
-    <Content Include="Content\js\dataTables.jqueryui.js" />
-    <Content Include="Content\js\dataTables.jqueryui.min.js" />
-    <Content Include="Content\js\dataTables.material.js" />
-    <Content Include="Content\js\dataTables.material.min.js" />
-    <Content Include="Content\js\dataTables.semanticui.js" />
-    <Content Include="Content\js\dataTables.semanticui.min.js" />
-    <Content Include="Content\js\dataTables.uikit.js" />
-    <Content Include="Content\js\dataTables.uikit.min.js" />
-    <Content Include="Content\js\jquery.dataTables.js" />
-    <Content Include="Content\js\jquery.dataTables.min.js" />
-    <Content Include="Content\js\jquery.js" />
+    <Content Include="Style\css\bootstrap-theme.css" />
+    <Content Include="Style\css\bootstrap-theme.min.css" />
+    <Content Include="Style\css\bootstrap.css" />
+    <Content Include="Style\css\bootstrap.min.css" />
+    <Content Include="Style\css\dataTables.bootstrap.css" />
+    <Content Include="Style\css\dataTables.bootstrap.min.css" />
+    <Content Include="Style\css\dataTables.bootstrap4.css" />
+    <Content Include="Style\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Style\css\dataTables.foundation.css" />
+    <Content Include="Style\css\dataTables.foundation.min.css" />
+    <Content Include="Style\css\dataTables.jqueryui.css" />
+    <Content Include="Style\css\dataTables.jqueryui.min.css" />
+    <Content Include="Style\css\dataTables.material.css" />
+    <Content Include="Style\css\dataTables.material.min.css" />
+    <Content Include="Style\css\dataTables.semanticui.css" />
+    <Content Include="Style\css\dataTables.semanticui.min.css" />
+    <Content Include="Style\css\dataTables.uikit.css" />
+    <Content Include="Style\css\dataTables.uikit.min.css" />
+    <Content Include="Style\css\jquery.dataTables.css" />
+    <Content Include="Style\css\jquery.dataTables.min.css" />
+    <Content Include="Style\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Style\images\favicon.ico" />
+    <Content Include="Style\images\sort_asc.png" />
+    <Content Include="Style\images\sort_asc_disabled.png" />
+    <Content Include="Style\images\sort_both.png" />
+    <Content Include="Style\images\sort_desc.png" />
+    <Content Include="Style\images\sort_desc_disabled.png" />
+    <Content Include="Style\js\dataTables.bootstrap.js" />
+    <Content Include="Style\js\dataTables.bootstrap.min.js" />
+    <Content Include="Style\js\dataTables.bootstrap4.js" />
+    <Content Include="Style\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Style\js\dataTables.dataTables.js" />
+    <Content Include="Style\js\dataTables.dataTables.min.js" />
+    <Content Include="Style\js\dataTables.foundation.js" />
+    <Content Include="Style\js\dataTables.foundation.min.js" />
+    <Content Include="Style\js\dataTables.jqueryui.js" />
+    <Content Include="Style\js\dataTables.jqueryui.min.js" />
+    <Content Include="Style\js\dataTables.material.js" />
+    <Content Include="Style\js\dataTables.material.min.js" />
+    <Content Include="Style\js\dataTables.semanticui.js" />
+    <Content Include="Style\js\dataTables.semanticui.min.js" />
+    <Content Include="Style\js\dataTables.uikit.js" />
+    <Content Include="Style\js\dataTables.uikit.min.js" />
+    <Content Include="Style\js\jquery.dataTables.js" />
+    <Content Include="Style\js\jquery.dataTables.min.js" />
+    <Content Include="Style\js\jquery.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Style\css\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Content\images\Sorting icons.psd" />
+    <Content Include="Style\images\Sorting icons.psd" />
+    <None Include="Properties\PublishProfiles\bookrd - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -265,7 +321,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Views\Read\" />
   </ItemGroup>
   <ItemGroup>
@@ -273,10 +328,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Style\css\bootstrap.min.css.map" />
+    <Content Include="Style\css\bootstrap.css.map" />
+    <Content Include="Style\css\bootstrap-theme.min.css.map" />
+    <Content Include="Style\css\bootstrap-theme.css.map" />
     <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>

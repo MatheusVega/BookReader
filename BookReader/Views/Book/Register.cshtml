@@ -89,7 +89,7 @@
         <h3><span class="fa fa-calculator"></span> Dados do Livro</h3>
 
         <div class="form-group">
-            @Html.LabelFor(x => x.Name, "Nome do Livro", htmlAttributes: new { @class = "col-sm-2 control-label" })
+            @Html.LabelFor(x => x.Name, htmlAttributes: new { @class = "col-sm-2 control-label" })
             <div class="col-sm-6">
                 @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @placeholder = "Nome", @class = "form-control" } })
                 @Html.ValidationMessageFor(u => u.Name, "", new { @class = "text-danger" })
@@ -97,7 +97,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(x => x.Indication, "Indicação", htmlAttributes: new { @class = "col-sm-2 control-label" })
+            @Html.LabelFor(x => x.Indication, htmlAttributes: new { @class = "col-sm-2 control-label" })
             <div class="col-sm-6">
                 @Html.EditorFor(x => x.Indication, new { htmlAttributes = new { @placeholder = "Indicação", @class = "form-control" } })
                 @Html.ValidationMessageFor(u => u.Indication, "", new { @class = "text-danger" })
@@ -105,23 +105,23 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(m => m.Author, new { @class = "col-sm-2 control-label" })
+            @Html.LabelFor(m => m.IdAuthor, new { @class = "col-sm-2 control-label" })
             <div class="col-sm-6">
                 @Html.DropDownListFor(m => m.IdAuthor, (List<SelectListItem>)ViewBag.listaAut, "--Selecione um Autor--", new { @class = "form-control", @autofocus = "true", @data_live_search = "true" })
-                @Html.ValidationMessageFor(m => m.Author, null, new { @class = "help-block position-absolute" })
+                @Html.ValidationMessageFor(m => m.IdAuthor, null, new { @class = "help-block position-absolute" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(m => m.Genre, new { @class = "col-sm-2 control-label" })
+            @Html.LabelFor(m => m.IdGenre, new { @class = "col-sm-2 control-label" })
             <div class="col-sm-6">
                 @Html.DropDownListFor(m => m.IdGenre, (List<SelectListItem>)ViewBag.listaGen, "--Selecione um Genero--", new { @class = "form-control", @autofocus = "true", @data_live_search = "true" })
-                @Html.ValidationMessageFor(m => m.Author, null, new { @class = "help-block position-absolute" })
+                @Html.ValidationMessageFor(m => m.IdGenre, null, new { @class = "help-block position-absolute" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(x => x.Saga, "Saga", htmlAttributes: new { @class = "col-sm-2 control-label" })
+            @Html.LabelFor(x => x.Saga, htmlAttributes: new { @class = "col-sm-2 control-label" })
             <div class="col-sm-6">
                 @Html.EditorFor(x => x.Saga, new { htmlAttributes = new { @placeholder = "Saga", @class = "form-control" } })
                 @Html.ValidationMessageFor(u => u.Saga, "", new { @class = "text-danger" })

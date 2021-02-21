@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace BookReader.BLL
@@ -81,7 +80,7 @@ namespace BookReader.BLL
 
             //Instaciamento da proc e adição de paramentros
             SelectSP selNfts = new SelectSP("BOOK_SP_SEL_BOOK");
-            
+
             try
             {
                 selNfts.Executa();
@@ -93,7 +92,7 @@ namespace BookReader.BLL
                 {
                     foreach (DataRow dr in selNfts.sDataTable.Rows)
                     {
-                        
+
                         arr.Add(new JObject(
                             new JProperty("Id", dr.Field<int>("BK_ID")),
                             new JProperty("BkName", dr.Field<string>("BK_NAME")),
@@ -117,7 +116,7 @@ namespace BookReader.BLL
 
         public void AddBook(Book book)
         {
-            
+
             Conexao conexao = new Conexao();
             conexao.Conectar();
 
@@ -159,13 +158,13 @@ namespace BookReader.BLL
                 response = "Ok";
                 return response;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 response = ex.ToString();
                 return response;
             }
-            
-            
+
+
         }
     }
 }

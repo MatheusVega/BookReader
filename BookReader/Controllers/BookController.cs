@@ -1,12 +1,7 @@
 ﻿using BookReader.BLL;
-using BookReader.DAL;
 using BookReader.Models;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace BookReader.Controllers
@@ -27,7 +22,7 @@ namespace BookReader.Controllers
             ViewBag.listaGen = bookBLL.ListGenres();
 
 
-            return View("Register",book);
+            return View("Register", book);
         }
 
         public ActionResult Index(Book book)
@@ -62,7 +57,7 @@ namespace BookReader.Controllers
 
             return bookBLL.GetBook();
         }
-        public ActionResult AddBookRead(int id,string resume,DateTime start,DateTime end)
+        public ActionResult AddBookRead(int id, string resume, DateTime start, DateTime end)
         {
             BookBLL bookBLL = new BookBLL();
 

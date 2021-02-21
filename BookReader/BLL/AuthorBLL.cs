@@ -1,11 +1,7 @@
-﻿using BookReader.DAL;
-using BookReader.Models;
+﻿using BookReader.Models;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 
 namespace BookReader.BLL
 {
@@ -28,7 +24,7 @@ namespace BookReader.BLL
             catch (Exception ex)
             {
             }
-            
+
         }
         public IList<Author> IList()
         {
@@ -40,7 +36,7 @@ namespace BookReader.BLL
             throw new NotImplementedException();
         }
 
-        
+
 
 
     }

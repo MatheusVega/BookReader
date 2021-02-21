@@ -1,10 +1,7 @@
 ﻿using BookReader.Mapping;
 using BookReader.Models;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Web;
 
 namespace BookReader.BLL
 {
@@ -47,7 +44,7 @@ namespace BookReader.BLL
             {
                 return base.SaveChanges();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
