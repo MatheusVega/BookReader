@@ -27,6 +27,13 @@ namespace BookReader.BLL
         {
             throw new NotImplementedException();
         }
+        public void Remove(string codigo)
+        {
+            var list = context.TB_BOOK.ToList();
+            Book book = list.First(x => x.Id == int.Parse(codigo));
+            context.TB_BOOK.Remove(book);
+            context.SaveChanges();
+        }
         public DataTable Authors()
         {
             Conexao conexao = new Conexao();
@@ -137,34 +144,6 @@ namespace BookReader.BLL
             {
 
             }
-        }
-
-        public string AddBookRead(int id, string resume, DateTime start, DateTime end)
-        {
-            string response;
-            Conexao conexao = new Conexao();
-            conexao.Conectar();
-            try
-            {
-                ExecutaSP executaSP = new ExecutaSP("BOOK_SP_INS_BOOK_READ", conexao.VoltaConexaoAberta());
-                executaSP.addParam("@ID", id);
-                executaSP.addParam("@RESUME", resume);
-                executaSP.addParam("@START", start);
-                executaSP.addParam("@END", end);
-
-                executaSP.Executa();
-                executaSP.Confirma();
-
-                response = "Ok";
-                return response;
-            }
-            catch (Exception ex)
-            {
-                response = ex.ToString();
-                return response;
-            }
-
-
         }
     }
 }

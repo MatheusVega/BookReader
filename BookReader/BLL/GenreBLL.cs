@@ -41,6 +41,12 @@ namespace BookReader.BLL
         {
             throw new NotImplementedException();
         }
-
+        public void Remove(string codigo)
+        {
+            var list = context.TB_GENRE.ToList();
+            Genre genre = list.First(x => x.Id == int.Parse(codigo));
+            context.TB_GENRE.Remove(genre);
+            context.SaveChanges();
+        }
     }
 }

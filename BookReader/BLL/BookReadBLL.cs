@@ -1,4 +1,5 @@
-﻿using BookReader.Models;
+﻿using BookReader.DAL;
+using BookReader.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,33 @@ namespace BookReader.BLL
         public void Dispose()
         {
             throw new NotImplementedException();
+        }
+        public string AddBookRead(int id, string resume, DateTime start, DateTime end)
+        {
+            string response;
+            Conexao conexao = new Conexao();
+            conexao.Conectar();
+            try
+            {
+                ExecutaSP executaSP = new ExecutaSP("BOOK_SP_INS_BOOK_READ", conexao.VoltaConexaoAberta());
+                executaSP.addParam("@ID", id);
+                executaSP.addParam("@RESUME", resume);
+                executaSP.addParam("@START", start);
+                executaSP.addParam("@END", end);
+
+                executaSP.Executa();
+                executaSP.Confirma();
+
+                response = "Ok";
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response = ex.ToString();
+                return response;
+            }
+
+
         }
     }
 }

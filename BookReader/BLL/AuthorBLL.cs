@@ -35,9 +35,12 @@ namespace BookReader.BLL
         {
             throw new NotImplementedException();
         }
-
-
-
-
+        public void Remove(string id)
+        {
+            var list = context.TB_AUTHOR.ToList();
+            Author author = list.First(x => x.Id == int.Parse(id));
+            context.TB_AUTHOR.Remove(author);
+            context.SaveChanges();
+        }
     }
 }

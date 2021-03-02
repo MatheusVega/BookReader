@@ -59,11 +59,18 @@ namespace BookReader.Controllers
         }
         public ActionResult AddBookRead(int id, string resume, DateTime start, DateTime end)
         {
-            BookBLL bookBLL = new BookBLL();
+            BookReadBLL bookBLL = new BookReadBLL();
 
             bookBLL.AddBookRead(id, resume, start, end);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("./View/BookRead/Index");
+        }
+
+        public void RemoveBook(string id)
+        {
+            BookBLL bookBLL = new BookBLL();
+            bookBLL.Remove(id);
+
         }
     }
 }

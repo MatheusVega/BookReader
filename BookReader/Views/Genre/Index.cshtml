@@ -27,17 +27,19 @@
                                 <th scope="col">Nome</th>
                                 <th scope="col">Descricao</th>
                                 <th scope="col">Data Criação</th>
+                                <th scope="col">Remover</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var u in Model)
                             {
-                                <tr>
-                                    <td>@u.Id</td>
-                                    <td>@u.Name</td>
-                                    <td>@u.Description</td>
-                                    <td>@u.DateCreate.ToShortDateString()</td>
-                                </tr>
+                            <tr>
+                                <td id="IdGenre+@u.Id">@u.Id</td>
+                                <td>@u.Name</td>
+                                <td>@u.Description</td>
+                                <td>@u.DateCreate.ToShortDateString()</td>
+                                <td id="Modelo + @u.Id"><a href="#" onclick="Remove(IdGenre+@u.Id)" style="color:black;"><i class="glyphicon glyphicon-remove"></i></a></td>
+                            </tr>
                             }
                         </tbody>
                     </table>
@@ -82,6 +84,23 @@
 
         dtable.dataTable(Genre);
     });
+
+    function Remove(idGenre) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("RemoveGenre", "Genre")',
+             data: {
+                 id: idGenre.textContent,
+             },
+            dataType: "json",
+            success: function (dados) {
+
+
+            }
+        });
+
+    }
 
 </script>
 

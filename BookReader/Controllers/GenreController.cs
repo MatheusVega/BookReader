@@ -34,5 +34,10 @@ namespace BookReader.Controllers
                 return View("Register", genre);
             }
         }
+        public void RemoveGenre(string id)
+        {
+            GenreBLL genreBLL = new GenreBLL();
+            genreBLL.Remove(id);
+        }
     }
 }

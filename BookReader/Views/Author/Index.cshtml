@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Index Genero";
+    ViewBag.Title = "Index Autor";
 }
 
 @model IList<BookReader.Models.Author>
@@ -23,24 +23,28 @@
                     <table style="width:100%; height:100%" class="table table-striped table-bordered" id="gridAuthor">
                         <thead>
                             <tr>
+                                <th scope="col">Código</th>
                                 <th scope="col">Nome</th>
                                 <th scope="col">Saga Favorita</th>
                                 <th scope="col">Livro Fav.</th>
                                 <th scope="col">Genero</th>
                                 <th scope="col">Detalhes</th>
+                                <th scope="col">Remover</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var u in Model)
                             {
-                                <tr>
-                                    <td>@u.Name</td>
-                                    <td>@u.MainSaga</td>
-                                    <td>@u.FavoriteBook</td>
-                                    <td>@u.Genre.Name</td>
-                                    <td>@u.Name</td>
+                            <tr>
+                                <td id="IdAuthor+@u.Id">@u.Id</td>
+                                <td>@u.Name</td>
+                                <td>@u.MainSaga</td>
+                                <td>@u.FavoriteBook</td>
+                                <td>@u.Genre.Name</td>
+                                <td>@u.Name</td>
+                                <td id="Modelo + @u.Id"><a href="#" onclick="Remove(IdAuthor+@u.Id)" style="color:black;"><i class="glyphicon glyphicon-remove"></i></a></td>
 
-                                </tr>
+                            </tr>
                             }
                         </tbody>
                     </table>
@@ -85,6 +89,23 @@
 
         dtable.dataTable(Author);
     });
+
+    function Remove(idAuthor) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("RemoveAuthor", "Author")',
+             data: {
+                 id: idAuthor.textContent,
+             },
+            dataType: "json",
+            success: function (dados) {
+
+
+            }
+        });
+
+    }
 
 </script>
 

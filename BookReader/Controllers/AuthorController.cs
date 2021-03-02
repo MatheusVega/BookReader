@@ -44,5 +44,10 @@ namespace BookReader.Controllers
                 return View("Index", author);
             }
         }
+        public void RemoveAuthor(string id)
+        {
+            AuthorBLL author = new AuthorBLL();
+            author.Remove(id);
+        }
     }
 }
