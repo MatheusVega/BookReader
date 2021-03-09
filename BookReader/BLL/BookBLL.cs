@@ -86,18 +86,18 @@ namespace BookReader.BLL
             var arr = new JArray();
 
             //Instaciamento da proc e adição de paramentros
-            SelectSP selNfts = new SelectSP("BOOK_SP_SEL_BOOK");
+            SelectSP selBook = new SelectSP("BOOK_SP_SEL_BOOK");
 
             try
             {
-                selNfts.Executa();
-                if (selNfts.sDataTable.Rows.Count == 0)
+                selBook.Executa();
+                if (selBook.sDataTable.Rows.Count == 0)
                 {
                     return arr;
                 }
                 else
                 {
-                    foreach (DataRow dr in selNfts.sDataTable.Rows)
+                    foreach (DataRow dr in selBook.sDataTable.Rows)
                     {
 
                         arr.Add(new JObject(
@@ -136,6 +136,78 @@ namespace BookReader.BLL
                 executa.addParam("@INDICATION", book.Indication);
                 executa.addParam("@SAGA", book.Saga.ToString());
                 executa.addParam("@DATE", book.DateCreate);
+
+                executa.Executa();
+                executa.Confirma();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        public JArray DetailsBook(int id)
+        {
+            var arr = new JArray();
+
+            SelectSP selBook = new SelectSP("BOOK_SP_SEL_DETAILS_BOOK");
+            selBook.addParam("ID", id);
+
+            try
+            {
+                selBook.Executa();
+                if (selBook.sDataTable.Rows.Count == 0)
+                {
+                    return arr;
+                }
+                else
+                {
+                    foreach (DataRow dr in selBook.sDataTable.Rows)
+                    {
+
+                        arr.Add(new JObject(
+                            new JProperty("BkId", dr.Field<int>("BK_ID")),
+                            new JProperty("BkName", dr.Field<string>("BK_NAME")),
+                            new JProperty("BkIndication", dr.Field<string>("BK_INDICATION")),
+                            new JProperty("BkSaga", dr.Field<string>("BK_SAGA")),
+                            new JProperty("BkDate", dr.Field<DateTime>("BK_DATE_CREATE").ToShortDateString()),
+                            new JProperty("BkFlag", dr.Field<int>("BK_FLAG")),
+                            new JProperty("AutName", dr.Field<string>("AUT_NAME")),
+                            new JProperty("AutSaga", dr.Field<string>("AUT_MAIN_SAGA")),
+                            new JProperty("AutFavBook", dr.Field<string>("AUT_FAVORITE_BOOK")),
+                            new JProperty("GenName", dr.Field<string>("GEN_NAME")),
+                            new JProperty("GenDes", dr.Field<string>("GEN_DESCRIPTION")),
+                            new JProperty("BkrResume", dr.Field<string>("BKR_RESUME")),
+                            new JProperty("BkrDateStart", dr.Field<DateTime>("BKR_DATESTART").ToShortDateString()),
+                            new JProperty("BkrDateEnd", dr.Field<DateTime>("BKR_DATESTART").ToShortDateString())
+                        ));
+                    }
+                    return arr;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return arr;
+            }
+        }
+
+        public void UpdBook(Book book,BookRead bookRead)
+        {
+
+            Conexao conexao = new Conexao();
+            conexao.Conectar();
+
+            ExecutaSP executa = new ExecutaSP("BOOK_SP_UPD_BOOK", conexao.VoltaConexaoAberta());
+            try
+            {
+                executa.addParam("@ID", book.Id);
+                executa.addParam("@NAME", book.Name);
+                executa.addParam("@INDICATION", book.Indication);
+                executa.addParam("@SAGA", book.Saga);
+                executa.addParam("@RESUME", bookRead.Resume);
+                executa.addParam("@DATESTART", bookRead.DateStart);
+                executa.addParam("@DATEEND", bookRead.DateEnd);
+
 
                 executa.Executa();
                 executa.Confirma();

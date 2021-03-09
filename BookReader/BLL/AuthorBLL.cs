@@ -42,5 +42,19 @@ namespace BookReader.BLL
             context.TB_AUTHOR.Remove(author);
             context.SaveChanges();
         }
+        public void Update(Author author)
+        {
+            var list = context.TB_AUTHOR.ToList();
+            var AuthorEdit = list.First(x => x.Id == author.Id);
+
+            AuthorEdit.Id = author.Id ;
+            AuthorEdit.Name = author.Name;
+            AuthorEdit.IdGenre = author.IdGenre ;
+            AuthorEdit.MainSaga = author.MainSaga ;
+            AuthorEdit.FavoriteBook = author.FavoriteBook ;
+            AuthorEdit.DateCreate = author.DateCreate ;
+
+            context.SaveChanges();
+        }
     }
 }

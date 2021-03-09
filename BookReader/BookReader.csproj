@@ -278,7 +278,7 @@
     <Content Include="Style\js\jquery.dataTables.min.js" />
     <Content Include="Style\js\jquery.js" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Style\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Style\css\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
@@ -324,10 +324,10 @@
     <Folder Include="Views\Read\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Style\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Style\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Style\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Style\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Style\css\bootstrap.min.css.map" />
     <Content Include="Style\css\bootstrap.css.map" />
     <Content Include="Style\css\bootstrap-theme.min.css.map" />

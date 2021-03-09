@@ -28,18 +28,20 @@
                                 <th scope="col">Descricao</th>
                                 <th scope="col">Data Criação</th>
                                 <th scope="col">Remover</th>
+                                <th scope="col">Editar</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var u in Model)
                             {
-                            <tr>
-                                <td id="IdGenre+@u.Id">@u.Id</td>
-                                <td>@u.Name</td>
-                                <td>@u.Description</td>
-                                <td>@u.DateCreate.ToShortDateString()</td>
-                                <td id="Modelo + @u.Id"><a href="#" onclick="Remove(IdGenre+@u.Id)" style="color:black;"><i class="glyphicon glyphicon-remove"></i></a></td>
-                            </tr>
+                                <tr>
+                                    <td>@u.Id</td>
+                                    <td>@u.Name</td>
+                                    <td>@u.Description</td>
+                                    <td>@u.DateCreate.ToShortDateString()</td>
+                                    <td id="Modelo + @u.Id"><a href="#" onclick="Remove(@u.Id)" style="color:black;"><i class="glyphicon glyphicon-remove"></i></a></td>
+                                    <td id="Modelo + @u.Id"><a href="#" onclick="Open('@u.Id','@u.Name','@u.Description','@u.DateCreate.ToShortDateString()')" style="color:black;"><i class="glyphicon glyphicon-pencil"></i></a></td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -51,8 +53,68 @@
 
     <button class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("Register","Genre")'" type="button">Cadastrar Novo Genero</button>
 
+    <div id="modal" class=" modal fade modal-scroll ">
+        <div class="modal-dialog  modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title text-center">Editar Gênero</h4>
+                </div>
+                <div class="  modal-over">
+                    <form class="form-horizontal" name="form0" id="form0 " method="POST" enctype="multipart/form-data">
+                        <div class="container-fluid panel no-margin-bottom">
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h1 class="page-header" style="color: #0A5E8A;">Dados do Gênero</h1>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="IdGenre">Código do Gênero</label>
+                                <div class="col-sm-6">
+                                    <input value="" class="form-control" id="txtIdGenre" name="IdGenre" type="text" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="NameGenre">Nome do Gênero</label>
+                                <div class="col-sm-6">
+                                    <input value="" class="form-control" id="txtNameGenre" name="NameGenre" type="text" >
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="Description">Descrição</label>
+                                <div class="col-sm-6">
+                                    <textarea class="form-control" id="txtDescription" rows="3"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="Date">Data da criação</label>
+                                <div class="col-sm-6">
+                                    <input value="" class="form-control" id="txtDate" name="Date" type="text">
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+
+
+                <a class="btn btn-primary" data-dismiss="modal">Fechar</a>
+                <input type="submit" onclick="Edit()" class="btn btn-primary" value="Editar"/>
+            </div>
+        </div>
+    </div>
 
 </div>
+
+
 
 <script>
     $(document).ready(function () {
@@ -90,16 +152,48 @@
         $.ajax({
             type: "POST",
             url: '@Url.Action("RemoveGenre", "Genre")',
-             data: {
-                 id: idGenre.textContent,
-             },
-            dataType: "json",
+            data: {
+                id: idGenre
+            },
+            datQDaType: "json",
             success: function (dados) {
-
 
             }
         });
 
+    }
+    function Open(idGenre,name,description,date) {
+
+        $('#txtIdGenre').val(idGenre);
+        $('#txtNameGenre').val(name);
+        $('#txtDescription').val(description);
+        $('#txtDate').val(date);
+
+        $("#modal").modal({
+            backdrop: 'static'
+        }, 'show');
+    };
+    function Edit() {
+
+        var id = $('#txtIdGenre').val();
+        var name = $('#txtNameGenre').val();
+        var description = $('#txtDescription').val();
+        var date = $('#txtDate').val();
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("UpdateGenre", "Genre")',
+            data: {
+                id: id,
+                name: name,
+                description: description,
+                date: date
+            },
+            datQDaType: "json",
+            success: function (dados) {
+
+            }
+        });
     }
 
 </script>

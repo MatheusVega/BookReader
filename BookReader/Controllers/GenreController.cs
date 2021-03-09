@@ -1,5 +1,6 @@
 ﻿using BookReader.BLL;
 using BookReader.Models;
+using System;
 using System.Web.Mvc;
 
 namespace BookReader.Controllers
@@ -38,6 +39,16 @@ namespace BookReader.Controllers
         {
             GenreBLL genreBLL = new GenreBLL();
             genreBLL.Remove(id);
+        }
+        public void UpdateGenre(int id,string name, string description, DateTime date)
+        {
+            GenreBLL genreBLL = new GenreBLL();
+            Genre genre = new Genre();
+            genre.Id = id;
+            genre.Name = name;
+            genre.Description = description;
+            genre.DateCreate = date;
+            genreBLL.Update(genre);
         }
     }
 }

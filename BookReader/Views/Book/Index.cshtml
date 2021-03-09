@@ -187,6 +187,141 @@
             </div>
         </div>
     </div>
+
+    <div id="modalBook" class=" modal fade modal-scroll ">
+        <div class="modal-dialog  modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title text-center">Editar Livros</h4>
+                </div>
+                <div class="  modal-over">
+                    <form class="form-horizontal" name="form0" id="form0 " method="POST" enctype="multipart/form-data">
+                        <div class="container-fluid panel no-margin-bottom">
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h1 class="page-header" style="color: #0A5E8A;">Dados do Livro</h1>
+                                </div>
+                            </div>
+
+                            <h3><span class="fa fa-calculator"></span> Dados do livro</h3>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="IdBook">Código do Livro</label>
+                                <div class="col-sm-6">
+                                    <input value="" autofocus="false" class="form-control" id="txtBkId" name="IdBook" type="text" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="Name">Nome do Livro</label>
+                                <div class="col-sm-6">
+                                    <input value="" autofocus="false" class="form-control" id="txtBkName" name="Name" type="text">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="Name">Indicação</label>
+                                <div class="col-sm-6">
+                                    <input value="" autofocus="false" class="form-control" id="txtBkIndication" name="Name" type="text">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="Name">Saga do Livro</label>
+                                <div class="col-sm-6">
+                                    <input value="" autofocus="false" class="form-control" id="txtBkSaga" name="Name" type="text">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="Name">Data da Criação</label>
+                                <div class="col-sm-6">
+                                    <input value="" autofocus="false" class="form-control" id="txtBkDate" name="Name" type="text" readonly>
+                                </div>
+                            </div>
+
+
+
+                            <h3><span class="fa fa-calculator"></span> Dados do Genero</h3>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="NameAuthor">Nome do Gênero</label>
+                                <div class="col-sm-6">
+                                    <input value="" class="form-control" id="txtGenName" name="NameAuthor" type="text" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="Saga">Descrição</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="txtGenDes" rows="3" readonly />
+                                </div>
+                            </div>
+
+                            <h3><span class="fa fa-calculator"></span> Dados do Autor</h3>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="NameAuthor">Nome do Autor</label>
+                                <div class="col-sm-6">
+                                    <input value="" class="form-control" id="txtAutName" name="NameAuthor" type="text" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="Saga">Saga Principal</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="txtAutSaga" rows="3" readonly />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="Favorite">Livro Favorito</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="txtAutFavBook" rows="3" readonly />
+                                </div>
+                            </div>
+                            
+                            <div id="Reading">
+                            
+                                <h3><span class="fa fa-calculator"></span>Leitura</h3>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="Name">Resumo do Livro</label>
+                                    <div class="col-sm-6">
+                                        <textarea class="form-control" id="txtBkrResume" rows="3"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="Name">Começo da Leitura</label>
+                                    <div class="col-sm-6">
+                                        <input value="" autofocus="false" class="form-control" id="txtBkrDateStart" name="Name" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="Name">Fim da Leitura</label>
+                                    <div class="col-sm-6">
+                                        <input value="" autofocus="false" class="form-control" id="txtBkrDateEnd" name="Name" type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+
+
+                <a class="btn btn-primary" data-dismiss="modal">Fechar</a>
+                <input type="submit" onclick="Update()" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -293,9 +428,9 @@
                     } else {
                         cols += '<td><input type="checkbox"/></td>'
                     }
-                    cols += '<td id="Modelo' + cont + '">' + '<a href="#" onclick="Open(IdBook' + cont + ',Name' + cont + ')"  style="color:black;"><i class="glyphicon glyphicon-pencil"></i></a></td>';
-                    cols += '<td id="Modelo' + cont + '">' + '<a href="#" onclick="Remove(IdBook' + cont + ')"  style="color:black;"><i class="glyphicon glyphicon-remove"></i></a></td>';
-                    cols += '<td id="Modelo' + cont + '">' + '<a href="#" onclick="Abrir(IdBook' + cont + ',Name' + cont + ')"  style="color:black;"><i class="glyphicon glyphicon-ok"></i></a></td>';
+                    cols += '<td><a href="#" onclick="OpenModal(' + item.Id + ')"  style="color:black;"><i class="glyphicon glyphicon-pencil"></i></a></td>';
+                    cols += '<td><a href="#" onclick="Remove(' + item.Id + ')"  style="color:black;"><i class="glyphicon glyphicon-remove"></i></a></td>';
+                    cols += '<td><a href="#" onclick="Open(' + item.Id + ')"  style="color:black;"><i class="glyphicon glyphicon-ok"></i></a></td>';
 
                     dtable.find('tbody')
                         .append($('<tr>')
@@ -315,14 +450,43 @@
 
 
 
-    function Open(idBook,name) {
+    function OpenModal(idBook) {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("DetailsBook", "Book")',
+             data: {
+                 id: idBook,
+             },
+            dataType: "json",
+            success: function (dados) {
+                $.each(dados, function (i, item) {
 
-        $('#txtIdBook').val(idBook.textContent);
-        $('#txtName').val(name.textContent);
+                    $('#txtBkId').val(item.BkId);
+                    $('#txtBkName').val(item.BkName);
+                    $('#txtBkIndication').val(item.BkIndication);
+                    $('#txtBkSaga').val(item.BkSaga);
+                    $('#txtBkDate').val(item.BkDate);
+                    $('#txtAutName').val(item.AutName);
+                    $('#txtAutSaga').val(item.AutSaga);
+                    $('#txtAutFavBook').val(item.AutFavBook);
+                    $('#txtGenName').val(item.GenName);
+                    $('#txtGenDes').val(item.GenDes);
+                    $('#txtBkrResume').val(item.BkrResume);
+                    $('#txtBkrDateStart').val(item.BkrDateStart);
+                    $('#txtBkrDateEnd').val(item.BkrDateEnd);
+                    if (item.BkFlag == 0) {
+                        $('Reading').addClass('hide')
+                    } else {
+                        $('Reading').removeClass('hide')
+                    }
+                    $("#modalBook").modal({
+                        backdrop: 'static'
+                    }, 'show');
+                });
 
-        $("#modal").modal({
-            backdrop: 'static'
-        }, 'show');
+
+            }
+        });
 
 
     };
@@ -350,13 +514,52 @@
         });
     }
 
+    function Open(idBook, name) {
+        $('#txtIdBook').val(idBook.textContent);
+        $('#txtName').val(name.textContent);
+
+        $("#modal").modal({
+            backdrop: 'static'
+        }, 'show');
+    };
+
     function Remove(idBook) {
-        
+
          $.ajax({
             type: "POST",
             url: '@Url.Action("RemoveBook", "Book")',
              data: {
                  id: idBook.textContent,
+             },
+            dataType: "json",
+            success: function (dados) {
+
+
+            }
+        });
+    }
+
+    function Update() {
+
+        id = $('#txtBkId').val();
+        name = $('#txtBkName').val();
+        indication = $('#txtBkIndication').val();
+        saga = $('#txtBkSaga').val();
+        resume = $('#txtBkrResume').val();
+        start = $('#txtBkrDateStart').val();
+        end = $('#txtBkrDateEnd').val();
+
+         $.ajax({
+            type: "POST",
+            url: '@Url.Action("UpdBook", "Book")',
+             data: {
+                 id: id,
+                 name: name,
+                 indication: indication,
+                 saga: saga,
+                 resume: resume,
+                 start: start,
+                 end: end
              },
             dataType: "json",
             success: function (dados) {

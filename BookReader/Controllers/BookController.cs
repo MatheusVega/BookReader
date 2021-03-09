@@ -29,6 +29,12 @@ namespace BookReader.Controllers
         {
             return View();
         }
+        public JArray GetBook()
+        {
+            BookBLL bookBLL = new BookBLL();
+
+            return bookBLL.GetBook();
+        }
 
         public ActionResult AddBook(FormCollection form)
         {
@@ -51,12 +57,6 @@ namespace BookReader.Controllers
 
         }
 
-        public JArray GetBook()
-        {
-            BookBLL bookBLL = new BookBLL();
-
-            return bookBLL.GetBook();
-        }
         public ActionResult AddBookRead(int id, string resume, DateTime start, DateTime end)
         {
             BookReadBLL bookBLL = new BookReadBLL();
@@ -71,6 +71,34 @@ namespace BookReader.Controllers
             BookBLL bookBLL = new BookBLL();
             bookBLL.Remove(id);
 
+        }
+        public string DetailsBook(int id)
+        {
+            BookBLL bookBLL = new BookBLL();
+
+            return bookBLL.DetailsBook(id).ToString();
+        }
+        public ActionResult UpdBook(int id,string name, string indication, string saga, string resume, DateTime start, DateTime end)
+        {
+            BookBLL bookBLL = new BookBLL();
+            Book book = new Book()
+            {
+                Id = id,
+                Name = name,
+                Indication = indication,
+                Saga = saga
+            };
+
+            BookRead bookRead = new BookRead() { 
+                IdBK = id,
+                Resume = resume,
+                DateStart = start,
+                DateEnd = end
+            };
+
+            bookBLL.UpdBook(book, bookRead);
+
+            return RedirectToAction("./View/BookRead/Index");
         }
     }
 }

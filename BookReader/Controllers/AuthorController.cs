@@ -1,5 +1,6 @@
 ﻿using BookReader.BLL;
 using BookReader.Models;
+using System;
 using System.Web.Mvc;
 
 namespace BookReader.Controllers
@@ -20,6 +21,9 @@ namespace BookReader.Controllers
         // GET: Author
         public ActionResult Index(Author author)
         {
+            GenreBLL genreBLL = new GenreBLL();
+            ViewBag.Genre = genreBLL.List();
+
             return View(authorBLL.IList());
         }
 
@@ -49,5 +53,19 @@ namespace BookReader.Controllers
             AuthorBLL author = new AuthorBLL();
             author.Remove(id);
         }
+        public void UpdateAuthor(int id, string name, int idGenre,string mainSaga,string favoriteBook, DateTime date)
+        {
+            AuthorBLL authorBLL = new AuthorBLL();
+            Author author = new Author();
+            author.Id = id;
+            author.Name = name;
+            author.IdGenre = idGenre;
+            author.MainSaga = mainSaga;
+            author.FavoriteBook = favoriteBook;
+            author.DateCreate = date;
+
+            authorBLL.Update(author);
+        }
+
     }
 }

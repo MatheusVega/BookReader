@@ -48,5 +48,14 @@ namespace BookReader.BLL
             context.TB_GENRE.Remove(genre);
             context.SaveChanges();
         }
+        public void Update(Genre genre)
+        {
+            var list = context.TB_GENRE.ToList();
+            var GenreEdit = list.First(x => x.Id == genre.Id);
+            GenreEdit.Name = genre.Name;
+            GenreEdit.Description = genre.Description;
+            GenreEdit.DateCreate = genre.DateCreate;
+            context.SaveChanges();
+        }
     }
 }

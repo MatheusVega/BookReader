@@ -35,16 +35,15 @@
                         <tbody>
                             @foreach (var u in Model)
                             {
-                            <tr>
-                                <td id="IdAuthor+@u.Id">@u.Id</td>
-                                <td>@u.Name</td>
-                                <td>@u.MainSaga</td>
-                                <td>@u.FavoriteBook</td>
-                                <td>@u.Genre.Name</td>
-                                <td>@u.Name</td>
-                                <td id="Modelo + @u.Id"><a href="#" onclick="Remove(IdAuthor+@u.Id)" style="color:black;"><i class="glyphicon glyphicon-remove"></i></a></td>
-
-                            </tr>
+                                <tr>
+                                    <td>@u.Id</td>
+                                    <td>@u.Name</td>
+                                    <td>@u.MainSaga</td>
+                                    <td>@u.FavoriteBook</td>
+                                    <td>@u.Genre.Name</td>
+                                    <td><a href="#" onclick="Remove(@u.Id)" style="color:black;"><i class="glyphicon glyphicon-remove"></i></a></td>
+                                    <td><a href="#" onclick="Open('@u.Id','@u.Name','@u.Genre.Name','@u.MainSaga','@u.FavoriteBook','@u.DateCreate.ToShortDateString()')" style="color:black;"><i class="glyphicon glyphicon-pencil"></i></a></td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -54,6 +53,79 @@
     </div>
 
     <button class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("RegisterAuthor","Author")'" type="button">Cadastrar Novo Autor</button>
+
+    <div id="modal" class=" modal fade modal-scroll ">
+        <div class="modal-dialog  modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title text-center">Editar Gênero</h4>
+                </div>
+                <div class="  modal-over">
+                    <form class="form-horizontal" name="form0" id="form0 " method="POST" enctype="multipart/form-data">
+                        <div class="container-fluid panel no-margin-bottom">
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h1 class="page-header" style="color: #0A5E8A;">Dados do Autor</h1>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="IdAuthor">Código do Autor</label>
+                                <div class="col-sm-6">
+                                    <input value="" class="form-control" id="txtIdAuthor" name="IdAuthor" type="text" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="NameAuthor">Nome do Autor</label>
+                                <div class="col-sm-6">
+                                    <input value="" class="form-control" id="txtName" name="NameAuthor" type="text">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Genero</label>
+                                <div class="col-md-10">
+                                    @Html.DropDownList("IdGenre", new SelectList(ViewBag.Genre, "Id", "Name"), "Selecionar Genero", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="Saga">Saga Principal</label>
+                                <div class="col-sm-6">
+                                    <input  class="form-control" id="txtSaga" rows="3"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="Favorite">Livro Favorito</label>
+                                <div class="col-sm-6">
+                                    <input  class="form-control" id="txtFavorite" rows="3"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="Date">Data da criação</label>
+                                <div class="col-sm-6">
+                                    <input value="" class="form-control" id="txtDate" name="Date" type="text">
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+
+
+                <a class="btn btn-primary" data-dismiss="modal">Fechar</a>
+                <input type="submit" onclick="EditAuthor()" class="btn btn-primary" value="Editar" />
+            </div>
+        </div>
+    </div>
 
 </div>
 
@@ -96,7 +168,7 @@
             type: "POST",
             url: '@Url.Action("RemoveAuthor", "Author")',
              data: {
-                 id: idAuthor.textContent,
+                 id: idAuthor,
              },
             dataType: "json",
             success: function (dados) {
@@ -105,6 +177,46 @@
             }
         });
 
+    }
+    function Open(idAuthor, name, genre, saga, favorite, date) {
+
+        $('#txtIdAuthor').val(idAuthor);
+        $('#txtName').val(name);
+        $('#txtGenre').val(genre);
+        $('#txtSaga').val(saga);
+        $('#txtFavorite').val(favorite);
+        $('#txtDate').val(date);
+
+        $("#modal").modal({
+            backdrop: 'static'
+        }, 'show');
+    };
+
+    function EditAuthor() {
+
+        var id = $('#txtIdAuthor').val();
+        var name = $('#txtName').val();
+        var idGenre = $('#IdGenre').val();
+        var Saga = $('#txtSaga').val();
+        var favorite = $('#txtFavorite').val();
+        var date = $('#txtDate').val();
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("UpdateAuthor", "Author")',
+            data: {
+                id: id,
+                name: name,
+                idGenre: idGenre,
+                mainSaga: Saga,
+                favoriteBook: favorite,
+                date: date
+            },
+            datQDaType: "json",
+            success: function (dados) {
+
+            }
+        });
     }
 
 </script>
