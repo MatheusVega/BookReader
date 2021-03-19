@@ -169,7 +169,7 @@ namespace BookReader.BLL
                             new JProperty("BkName", dr.Field<string>("BK_NAME")),
                             new JProperty("BkIndication", dr.Field<string>("BK_INDICATION")),
                             new JProperty("BkSaga", dr.Field<string>("BK_SAGA")),
-                            new JProperty("BkDate", dr.Field<DateTime>("BK_DATE_CREATE").ToShortDateString()),
+                            new JProperty("BkDate", dr.Field<DateTime?>("BK_DATE_CREATE").ToString()), 
                             new JProperty("BkFlag", dr.Field<int>("BK_FLAG")),
                             new JProperty("AutName", dr.Field<string>("AUT_NAME")),
                             new JProperty("AutSaga", dr.Field<string>("AUT_MAIN_SAGA")),
@@ -177,8 +177,8 @@ namespace BookReader.BLL
                             new JProperty("GenName", dr.Field<string>("GEN_NAME")),
                             new JProperty("GenDes", dr.Field<string>("GEN_DESCRIPTION")),
                             new JProperty("BkrResume", dr.Field<string>("BKR_RESUME")),
-                            new JProperty("BkrDateStart", dr.Field<DateTime>("BKR_DATESTART").ToShortDateString()),
-                            new JProperty("BkrDateEnd", dr.Field<DateTime>("BKR_DATESTART").ToShortDateString())
+                            new JProperty("BkrDateStart",dr.Field<DateTime?>("BKR_DATESTART").ToString()),
+                            new JProperty("BkrDateEnd", dr.Field<DateTime?>("BKR_DATEEND").ToString())
                         ));
                     }
                     return arr;

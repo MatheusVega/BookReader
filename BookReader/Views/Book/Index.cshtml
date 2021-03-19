@@ -475,9 +475,9 @@
                     $('#txtBkrDateStart').val(item.BkrDateStart);
                     $('#txtBkrDateEnd').val(item.BkrDateEnd);
                     if (item.BkFlag == 0) {
-                        $('Reading').addClass('hide')
+                        $('#Reading').addClass('hide')
                     } else {
-                        $('Reading').removeClass('hide')
+                        $('#Reading').removeClass('hide')
                     }
                     $("#modalBook").modal({
                         backdrop: 'static'
@@ -541,13 +541,13 @@
 
     function Update() {
 
-        id = $('#txtBkId').val();
-        name = $('#txtBkName').val();
-        indication = $('#txtBkIndication').val();
-        saga = $('#txtBkSaga').val();
-        resume = $('#txtBkrResume').val();
-        start = $('#txtBkrDateStart').val();
-        end = $('#txtBkrDateEnd').val();
+        var id = $('#txtBkId').val();
+        var name = $('#txtBkName').val();
+        var indication = $('#txtBkIndication').val();
+        var saga = $('#txtBkSaga').val();
+        var resume = $('#txtBkrResume').val();
+        var start = $('#txtBkrDateStart').val();
+        var end = $('#txtBkrDateEnd').val();
 
          $.ajax({
             type: "POST",
@@ -556,15 +556,15 @@
                  id: id,
                  name: name,
                  indication: indication,
-                 saga: saga,
-                 resume: resume,
-                 start: start,
-                 end: end
+                 saga: saga
+                 //resume: resume,
+                 //start: start,
+                 //end: end
              },
             dataType: "json",
             success: function (dados) {
 
-
+                console.log("teste");
             }
         });
     }

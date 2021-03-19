@@ -100,5 +100,19 @@ namespace BookReader.Controllers
 
             return RedirectToAction("./View/BookRead/Index");
         }
+        public ActionResult UpdBook(int id, string name, string indication, string saga)
+        {
+            BookBLL bookBLL = new BookBLL();
+            Book book = new Book()
+            {
+                Id = id,
+                Name = name,
+                Indication = indication,
+                Saga = saga
+            };
+            //bookBLL.UpdBook(book, bookRead);
+
+            return RedirectToAction("./View/BookRead/Index");
+        }
     }
 }
